@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源导航站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #2575fc);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .logo i {
+            margin-right: 15px;
+            color: #FFD700;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .search-box {
+            max-width: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .search-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .category {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            width: 350px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .video-icon {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+        }
+        
+        .redbook-icon {
+            background: linear-gradient(45deg, #FF0000, #FF6B6B);
+        }
+        
+        .overseas-icon {
+            background: linear-gradient(45deg, #0077B6, #00B4D8);
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .link-text {
+            flex: 1;
+        }
+        
+        .link-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .link-url {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category {
+                width: 100%;
+                max-width: 500px;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-compass"></i>资源导航站
+            </div>
+            <p class="tagline">一站式访问视频号、小红书和出海资源，高效便捷的内容导航平台</p>
+            
+            <div class="search-box">
+                <input type="text" placeholder="搜索资源...">
+                <i class="fas fa-search"></i>
+            </div>
+        </header>
+        
+        <div class="categories">
+            <!-- 视频号板块 -->
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon video-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h2 class="category-title">视频号</h2>
+                </div>
+                <div class="links">
+                    <a href="https://scys.com/articleDetail/xq_topic/5125221225215144" class="link-item" target="_blank">
+                        <div class="link-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="link-text">
+                            <div class="link-title">视频号专题一</div>
+                            <div class="link-url">scys.com/articleDetail/xq_topic/5125221225215144</div>
+                        </div>
+                    </a>
+                    <a href="https://scys.com/articleDetail/xq_topic/8852585514241522" class="link-item" target="_blank">
+                        <div class="link-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="link-text">
+                            <div class="link-title">视频号专题二</div>
+                            <div class="link-url">scys.com/articleDetail/xq_topic/8852585514241522</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 小红书板块 -->
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon redbook-icon">
+                        <i class="fab fa-reddit-alien"></i>
+                    </div>
+                    <h2 class="category-title">小红书</h2>
+                </div>
+                <div class="links">
+                    <a href="https://scys.com/articleDetail/xq_topic/4845285412458488" class="link-item" target="_blank">
+                        <div class="link-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="link-text">
+                            <div class="link-title">小红书专题一</div>
+                            <div class="link-url">scys.com/articleDetail/xq_topic/4845285412458488</div>
+                        </div>
+                    </a>
+                    <a href="https://scys.com/articleDetail/xq_topic/2852482521544541" class="link-item" target="_blank">
+                        <div class="link-icon">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <div class="link-text">
+                            <div class="link-title">小红书专题二</div>
+                            <div class="link-url">scys.com/articleDetail/xq_topic/2852482521544541</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 出海板块 -->
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon overseas-icon">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                    <h2 class="category-title">出海</h2>
+                </div>
+                <div class="links">
+                    <a href="https://scys.com/articleDetail/xq_topic/1524155888225442" class="link-item" target="_blank">
+                        <div class="link-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <div class="link-text">
+                            <div class="link-title">出海专题一</div>
+                            <div class="link-url">scys.com/articleDetail/xq_topic/1524155888225442</div>
+                        </div>
+                    </a>
+                    <a href="https://scys.com/articleDetail/xq_topic/8852488228128112" class="link-item" target="_blank">
+                        <div class="link-icon">
+                            <i class="fas fa-anchor"></i>
+                        </div>
+                        <div class="link-text">
+                            <div class="link-title">出海专题二</div>
+                            <div class="link-url">scys.com/articleDetail/xq_topic/8852488228128112</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 资源导航站 | 一站式资源访问平台</p>
+        </footer>
+    </div>
+
+    <script>
+        // 搜索功能实现
+        document.querySelector('.search-box input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const links = document.querySelectorAll('.link-item');
+            
+            links.forEach(link => {
+                const title = link.querySelector('.link-title').textContent.toLowerCase();
+                const url = link.querySelector('.link-url').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || url.includes(searchTerm)) {
+                    link.style.display = 'flex';
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+        });
+        
+        // 添加点击动画效果
+        document.querySelectorAll('.link-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
