@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>资源导航站</title>
+    <title>资源导航站 - 一站式内容平台</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,7 +14,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #2575fc);
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50, #4a235a);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             min-height: 100vh;
@@ -44,19 +44,34 @@
             margin-bottom: 10px;
             color: #fff;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .logo i {
             margin-right: 15px;
-            color: #FFD700;
+            color: #4FC3F7;
+            background: rgba(255, 255, 255, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
         }
         
         .tagline {
             font-size: 1.2rem;
             opacity: 0.9;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto;
             line-height: 1.6;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4FC3F7;
         }
         
         .search-box {
@@ -76,6 +91,7 @@
             font-size: 1rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            padding-left: 50px;
         }
         
         .search-box input:focus {
@@ -86,7 +102,7 @@
         
         .search-box i {
             position: absolute;
-            right: 20px;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
             color: rgba(255, 255, 255, 0.7);
@@ -137,15 +153,15 @@
         }
         
         .video-icon {
-            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+            background: linear-gradient(45deg, #2196F3, #03A9F4);
         }
         
         .redbook-icon {
-            background: linear-gradient(45deg, #FF0000, #FF6B6B);
+            background: linear-gradient(45deg, #FF5252, #FF4081);
         }
         
         .overseas-icon {
-            background: linear-gradient(45deg, #0077B6, #00B4D8);
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
         }
         
         .category-title {
@@ -168,6 +184,7 @@
             transition: all 0.3s ease;
             text-decoration: none;
             color: white;
+            cursor: pointer;
         }
         
         .link-item:hover {
@@ -204,12 +221,34 @@
             white-space: nowrap;
         }
         
+        .link-item.video {
+            border-left: 4px solid #2196F3;
+        }
+        
+        .link-item.redbook {
+            border-left: 4px solid #FF5252;
+        }
+        
+        .link-item.overseas {
+            border-left: 4px solid #4CAF50;
+        }
+        
         footer {
             text-align: center;
             margin-top: 50px;
             padding: 20px;
             font-size: 0.9rem;
             opacity: 0.8;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        
+        .category-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
         }
         
         @media (max-width: 768px) {
@@ -226,6 +265,12 @@
             .logo {
                 font-size: 2.2rem;
             }
+            
+            .logo i {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -233,13 +278,14 @@
     <div class="container">
         <header>
             <div class="logo">
-                <i class="fas fa-compass"></i>资源导航站
+                <i class="fas fa-compass"></i>
+                <div>资源导航站</div>
             </div>
             <p class="tagline">一站式访问视频号、小红书和出海资源，高效便捷的内容导航平台</p>
             
             <div class="search-box">
-                <input type="text" placeholder="搜索资源...">
                 <i class="fas fa-search"></i>
+                <input type="text" placeholder="搜索资源...">
             </div>
         </header>
         
@@ -250,10 +296,10 @@
                     <div class="category-icon video-icon">
                         <i class="fas fa-video"></i>
                     </div>
-                    <h2 class="category-title">视频号</h2>
+                    <h2 class="category-title">视频号 <span class="category-badge">2个资源</span></h2>
                 </div>
                 <div class="links">
-                    <a href="https://scys.com/articleDetail/xq_topic/5125221225215144" class="link-item" target="_blank">
+                    <a href="https://scys.com/articleDetail/xq_topic/5125221225215144" class="link-item video" target="_blank">
                         <div class="link-icon">
                             <i class="fas fa-play-circle"></i>
                         </div>
@@ -262,7 +308,7 @@
                             <div class="link-url">scys.com/articleDetail/xq_topic/5125221225215144</div>
                         </div>
                     </a>
-                    <a href="https://scys.com/articleDetail/xq_topic/8852585514241522" class="link-item" target="_blank">
+                    <a href="https://scys.com/articleDetail/xq_topic/8852585514241522" class="link-item video" target="_blank">
                         <div class="link-icon">
                             <i class="fas fa-film"></i>
                         </div>
@@ -280,10 +326,10 @@
                     <div class="category-icon redbook-icon">
                         <i class="fab fa-reddit-alien"></i>
                     </div>
-                    <h2 class="category-title">小红书</h2>
+                    <h2 class="category-title">小红书 <span class="category-badge">2个资源</span></h2>
                 </div>
                 <div class="links">
-                    <a href="https://scys.com/articleDetail/xq_topic/4845285412458488" class="link-item" target="_blank">
+                    <a href="https://scys.com/articleDetail/xq_topic/4845285412458488" class="link-item redbook" target="_blank">
                         <div class="link-icon">
                             <i class="fas fa-book-open"></i>
                         </div>
@@ -292,7 +338,7 @@
                             <div class="link-url">scys.com/articleDetail/xq_topic/4845285412458488</div>
                         </div>
                     </a>
-                    <a href="https://scys.com/articleDetail/xq_topic/2852482521544541" class="link-item" target="_blank">
+                    <a href="https://scys.com/articleDetail/xq_topic/2852482521544541" class="link-item redbook" target="_blank">
                         <div class="link-icon">
                             <i class="fas fa-pen-fancy"></i>
                         </div>
@@ -310,10 +356,10 @@
                     <div class="category-icon overseas-icon">
                         <i class="fas fa-ship"></i>
                     </div>
-                    <h2 class="category-title">出海</h2>
+                    <h2 class="category-title">出海 <span class="category-badge">2个资源</span></h2>
                 </div>
                 <div class="links">
-                    <a href="https://scys.com/articleDetail/xq_topic/1524155888225442" class="link-item" target="_blank">
+                    <a href="https://scys.com/articleDetail/xq_topic/1524155888225442" class="link-item overseas" target="_blank">
                         <div class="link-icon">
                             <i class="fas fa-globe-americas"></i>
                         </div>
@@ -322,7 +368,7 @@
                             <div class="link-url">scys.com/articleDetail/xq_topic/1524155888225442</div>
                         </div>
                     </a>
-                    <a href="https://scys.com/articleDetail/xq_topic/8852488228128112" class="link-item" target="_blank">
+                    <a href="https://scys.com/articleDetail/xq_topic/8852488228128112" class="link-item overseas" target="_blank">
                         <div class="link-icon">
                             <i class="fas fa-anchor"></i>
                         </div>
@@ -336,7 +382,7 @@
         </div>
         
         <footer>
-            <p>© 2023 资源导航站 | 一站式资源访问平台</p>
+            <p>© 2023 资源导航站 | 一站式资源访问平台 | 共6个优质资源</p>
         </footer>
     </div>
 
@@ -365,6 +411,17 @@
                 setTimeout(() => {
                     this.style.transform = '';
                 }, 200);
+            });
+        });
+        
+        // 添加分类提示
+        const categories = document.querySelectorAll('.category');
+        categories.forEach(category => {
+            category.addEventListener('click', function(e) {
+                if (e.target.classList.contains('category-title')) {
+                    const title = this.querySelector('.category-title').textContent;
+                    alert(`您选择了${title}分类，共2个资源`);
+                }
             });
         });
     </script>
