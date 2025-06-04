@@ -1,13 +1,7 @@
-name = "my-website"
-main = "index.html"
-compatibility_date = "2024-01-01"
-
-[site]
-bucket = "./"       # 网站文件所在目录
-entry-point = "./"  # 入口目录
-
-pages_build_output_dir = "你的网站目录名"  # 👈 新增这行
-name = "my-website"
-main = "index.html"
-[build]
-pages_build_output_dir = "./dist"
+{
+  "name": "static-site",
+  "compatibility_date": "2025-06-02",
+  "assets": {
+    "directory": "./dist"
+  }
+}
