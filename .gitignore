@@ -1,0 +1,24 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+.temp/
+.tmp/
+.out/
+.next/
+.netlify/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/editor configs
+.vscode/
+.idea/
+*.log
+
+# Environment files
+.env
+.env.*
