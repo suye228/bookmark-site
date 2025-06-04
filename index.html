@@ -3,427 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>资源导航站 - 一站式内容平台</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>精品导航站</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, #1a2a6c, #2c3e50, #4a235a);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-            color: #fff;
+            position: relative;
+            overflow-x: hidden;
         }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><circle cx="30" cy="30" r="2"/></g></svg>') repeat;
+            animation: drift 20s ease-in-out infinite;
         }
-        
+
+        @keyframes drift {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            50% { transform: translateX(10px) translateY(-10px); }
+        }
+
         .container {
+            position: relative;
+            z-index: 1;
             max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
         }
-        
+
         header {
             text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
         }
-        
-        .logo {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .logo i {
-            margin-right: 15px;
-            color: #4FC3F7;
-            background: rgba(255, 255, 255, 0.1);
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 20px auto;
-            line-height: 1.6;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 4px solid #4FC3F7;
-        }
-        
-        .search-box {
-            max-width: 600px;
-            margin: 30px auto;
-            position: relative;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 15px 20px;
-            border-radius: 50px;
-            border: none;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
             color: white;
-            font-size: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            padding-left: 50px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .search-box input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            font-weight: 300;
         }
-        
-        .search-box i {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
+
         .categories {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
-        
+
         .category {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.15);
             backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 25px;
-            width: 350px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
         }
-        
+
+        .category:nth-child(1) { animation-delay: 0.2s; }
+        .category:nth-child(2) { animation-delay: 0.4s; }
+        .category:nth-child(3) { animation-delay: 0.6s; }
+
         .category:hover {
             transform: translateY(-10px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255,255,255,0.25);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
-        
+
         .category-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 25px;
         }
-        
+
         .category-icon {
             width: 50px;
             height: 50px;
-            border-radius: 50%;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
             font-size: 1.5rem;
+            margin-right: 15px;
+            animation: pulse 2s ease-in-out infinite;
         }
-        
+
         .video-icon {
-            background: linear-gradient(45deg, #2196F3, #03A9F4);
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
         }
-        
-        .redbook-icon {
-            background: linear-gradient(45deg, #FF5252, #FF4081);
+
+        .xiaohongshu-icon {
+            background: linear-gradient(45deg, #ff3838, #ff6b9d);
         }
-        
+
         .overseas-icon {
-            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
         }
-        
+
         .category-title {
             font-size: 1.5rem;
             font-weight: 600;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
-        
+
         .links {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-        
+
         .link-item {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
             transition: all 0.3s ease;
             text-decoration: none;
             color: white;
-            cursor: pointer;
+            display: block;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .link-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .link-item:hover::before {
+            left: 100%;
+        }
+
         .link-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(5px);
+            background: rgba(255,255,255,0.2);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
-        
-        .link-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+
+        .link-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 1.2rem;
-            background: rgba(255, 255, 255, 0.15);
+            justify-content: space-between;
         }
-        
-        .link-text {
-            flex: 1;
-        }
-        
-        .link-title {
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-        
+
         .link-url {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        
-        .link-item.video {
-            border-left: 4px solid #2196F3;
-        }
-        
-        .link-item.redbook {
-            border-left: 4px solid #FF5252;
-        }
-        
-        .link-item.overseas {
-            border-left: 4px solid #4CAF50;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
             font-size: 0.9rem;
             opacity: 0.8;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
         }
-        
-        .category-badge {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-left: 10px;
+
+        .external-icon {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
         }
-        
+
+        .link-item:hover .external-icon {
+            opacity: 1;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
         @media (max-width: 768px) {
             .categories {
-                flex-direction: column;
-                align-items: center;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
             }
             
             .category {
-                width: 100%;
-                max-width: 500px;
+                padding: 20px;
             }
             
-            .logo {
-                font-size: 2.2rem;
+            .link-item {
+                padding: 15px;
             }
-            
-            .logo i {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            animation: fadeInUp 1s ease-out 0.8s both;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo">
-                <i class="fas fa-compass"></i>
-                <div>资源导航站</div>
-            </div>
-            <p class="tagline">一站式访问视频号、小红书和出海资源，高效便捷的内容导航平台</p>
-            
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="搜索资源...">
-            </div>
+            <h1>✨ 精品导航站</h1>
+            <p class="subtitle">发现优质内容，探索无限可能</p>
         </header>
-        
+
         <div class="categories">
-            <!-- 视频号板块 -->
             <div class="category">
                 <div class="category-header">
-                    <div class="category-icon video-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h2 class="category-title">视频号 <span class="category-badge">2个资源</span></h2>
+                    <div class="category-icon video-icon">📹</div>
+                    <h2 class="category-title">视频号</h2>
                 </div>
                 <div class="links">
-                    <a href="https://scys.com/articleDetail/xq_topic/5125221225215144" class="link-item video" target="_blank">
-                        <div class="link-icon">
-                            <i class="fas fa-play-circle"></i>
+                    <a href="https://scys.com/articleDetail/xq_topic/5125221225215144" class="link-item" target="_blank">
+                        <div class="link-title">
+                            视频号资源 #1
+                            <span class="external-icon">↗</span>
                         </div>
-                        <div class="link-text">
-                            <div class="link-title">视频号专题一</div>
-                            <div class="link-url">scys.com/articleDetail/xq_topic/5125221225215144</div>
-                        </div>
+                        <div class="link-url">scys.com/articleDetail/xq_topic/5125221225215144</div>
                     </a>
-                    <a href="https://scys.com/articleDetail/xq_topic/8852585514241522" class="link-item video" target="_blank">
-                        <div class="link-icon">
-                            <i class="fas fa-film"></i>
+                    <a href="https://scys.com/articleDetail/xq_topic/8852585514241522" class="link-item" target="_blank">
+                        <div class="link-title">
+                            视频号资源 #2
+                            <span class="external-icon">↗</span>
                         </div>
-                        <div class="link-text">
-                            <div class="link-title">视频号专题二</div>
-                            <div class="link-url">scys.com/articleDetail/xq_topic/8852585514241522</div>
-                        </div>
+                        <div class="link-url">scys.com/articleDetail/xq_topic/8852585514241522</div>
                     </a>
                 </div>
             </div>
-            
-            <!-- 小红书板块 -->
+
             <div class="category">
                 <div class="category-header">
-                    <div class="category-icon redbook-icon">
-                        <i class="fab fa-reddit-alien"></i>
-                    </div>
-                    <h2 class="category-title">小红书 <span class="category-badge">2个资源</span></h2>
+                    <div class="category-icon xiaohongshu-icon">📱</div>
+                    <h2 class="category-title">小红书</h2>
                 </div>
                 <div class="links">
-                    <a href="https://scys.com/articleDetail/xq_topic/4845285412458488" class="link-item redbook" target="_blank">
-                        <div class="link-icon">
-                            <i class="fas fa-book-open"></i>
+                    <a href="https://scys.com/articleDetail/xq_topic/4845285412458488" class="link-item" target="_blank">
+                        <div class="link-title">
+                            小红书攻略 #1
+                            <span class="external-icon">↗</span>
                         </div>
-                        <div class="link-text">
-                            <div class="link-title">小红书专题一</div>
-                            <div class="link-url">scys.com/articleDetail/xq_topic/4845285412458488</div>
-                        </div>
+                        <div class="link-url">scys.com/articleDetail/xq_topic/4845285412458488</div>
                     </a>
-                    <a href="https://scys.com/articleDetail/xq_topic/2852482521544541" class="link-item redbook" target="_blank">
-                        <div class="link-icon">
-                            <i class="fas fa-pen-fancy"></i>
+                    <a href="https://scys.com/articleDetail/xq_topic/2852482521544541" class="link-item" target="_blank">
+                        <div class="link-title">
+                            小红书攻略 #2
+                            <span class="external-icon">↗</span>
                         </div>
-                        <div class="link-text">
-                            <div class="link-title">小红书专题二</div>
-                            <div class="link-url">scys.com/articleDetail/xq_topic/2852482521544541</div>
-                        </div>
+                        <div class="link-url">scys.com/articleDetail/xq_topic/2852482521544541</div>
                     </a>
                 </div>
             </div>
-            
-            <!-- 出海板块 -->
+
             <div class="category">
                 <div class="category-header">
-                    <div class="category-icon overseas-icon">
-                        <i class="fas fa-ship"></i>
-                    </div>
-                    <h2 class="category-title">出海 <span class="category-badge">2个资源</span></h2>
+                    <div class="category-icon overseas-icon">🌍</div>
+                    <h2 class="category-title">出海</h2>
                 </div>
                 <div class="links">
-                    <a href="https://scys.com/articleDetail/xq_topic/1524155888225442" class="link-item overseas" target="_blank">
-                        <div class="link-icon">
-                            <i class="fas fa-globe-americas"></i>
+                    <a href="https://scys.com/articleDetail/xq_topic/1524155888225442" class="link-item" target="_blank">
+                        <div class="link-title">
+                            出海指南 #1
+                            <span class="external-icon">↗</span>
                         </div>
-                        <div class="link-text">
-                            <div class="link-title">出海专题一</div>
-                            <div class="link-url">scys.com/articleDetail/xq_topic/1524155888225442</div>
-                        </div>
+                        <div class="link-url">scys.com/articleDetail/xq_topic/1524155888225442</div>
                     </a>
-                    <a href="https://scys.com/articleDetail/xq_topic/8852488228128112" class="link-item overseas" target="_blank">
-                        <div class="link-icon">
-                            <i class="fas fa-anchor"></i>
+                    <a href="https://scys.com/articleDetail/xq_topic/8852488228128112" class="link-item" target="_blank">
+                        <div class="link-title">
+                            出海指南 #2
+                            <span class="external-icon">↗</span>
                         </div>
-                        <div class="link-text">
-                            <div class="link-title">出海专题二</div>
-                            <div class="link-url">scys.com/articleDetail/xq_topic/8852488228128112</div>
-                        </div>
+                        <div class="link-url">scys.com/articleDetail/xq_topic/8852488228128112</div>
                     </a>
                 </div>
             </div>
         </div>
-        
-        <footer>
-            <p>© 2023 资源导航站 | 一站式资源访问平台 | 共6个优质资源</p>
+
+        <footer class="footer">
+            <p>💫 精心收集，用心推荐</p>
         </footer>
     </div>
-
-    <script>
-        // 搜索功能实现
-        document.querySelector('.search-box input').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const links = document.querySelectorAll('.link-item');
-            
-            links.forEach(link => {
-                const title = link.querySelector('.link-title').textContent.toLowerCase();
-                const url = link.querySelector('.link-url').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || url.includes(searchTerm)) {
-                    link.style.display = 'flex';
-                } else {
-                    link.style.display = 'none';
-                }
-            });
-        });
-        
-        // 添加点击动画效果
-        document.querySelectorAll('.link-item').forEach(item => {
-            item.addEventListener('click', function() {
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-        });
-        
-        // 添加分类提示
-        const categories = document.querySelectorAll('.category');
-        categories.forEach(category => {
-            category.addEventListener('click', function(e) {
-                if (e.target.classList.contains('category-title')) {
-                    const title = this.querySelector('.category-title').textContent;
-                    alert(`您选择了${title}分类，共2个资源`);
-                }
-            });
-        });
-    </script>
 </body>
 </html>
