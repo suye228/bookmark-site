@@ -9,3 +9,5 @@ entry-point = "./"  # 入口目录
 pages_build_output_dir = "你的网站目录名"  # 👈 新增这行
 name = "my-website"
 main = "index.html"
+[build]
+pages_build_output_dir = "./dist"
